@@ -17,7 +17,7 @@ const Header = () => {
                 <Link to="/categorias">Categorias</Link>
               </LinksItems>
               <LinksItems>
-                <Link to="/product">Categorias</Link>
+                <Link to="/product">Novidades</Link>
               </LinksItems>
               <LinksItems>
                 <a href="#">Promoções</a>
