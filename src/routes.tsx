@@ -1,16 +1,16 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import Categories from './pages/Categories'
-import Product from './pages/Product'
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Categories from "./pages/Categories";
+import Product from "./pages/Product";
 
 const Rotas = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/categorias" element={<Categories />} />
-      <Route path="/product/:id" element={<Product />} />
+      <Route path="/product" element={<Product />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default Rotas
+export default Rotas;
