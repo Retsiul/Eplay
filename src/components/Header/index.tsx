@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import { HeaderBar, LinkCart, Links, LinksItems } from './styles'
-import logo from '../../assets/images/logo.svg'
-import carrinho from '../../assets/images/carrinho.svg'
+import { Link } from "react-router-dom";
+import { HeaderBar, LinkCart, Links, LinksItems } from "./styles";
+import logo from "../../assets/images/logo.svg";
+import carrinho from "../../assets/images/carrinho.svg";
 
 const Header = () => {
   return (
@@ -17,7 +17,7 @@ const Header = () => {
                 <Link to="/categorias">Categorias</Link>
               </LinksItems>
               <LinksItems>
-                <a href="#">Novidades</a>
+                <Link to="/product">Categorias</Link>
               </LinksItems>
               <LinksItems>
                 <a href="#">Promoções</a>
@@ -31,7 +31,7 @@ const Header = () => {
         </LinkCart>
       </HeaderBar>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
