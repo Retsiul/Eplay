@@ -1,10 +1,10 @@
-import { useParams } from 'react-router-dom'
-import Hero from '../../components/Hero'
-import Section from '../../components/Section'
-import Gallery from '../../components/Gallery'
-import ResidentEvil from '../../assets/images/resident.png'
+// import { useParams } from "react-router-dom";
+import Hero from "../../components/Hero";
+import Section from "../../components/Section";
+import Gallery from "../../components/Gallery";
+import ResidentEvil from "../../assets/images/resident.png";
 const Product = () => {
-  const { id } = useParams()
+  // const { id } = useParams()
   return (
     <>
       <Hero />
@@ -39,7 +39,7 @@ const Product = () => {
       </Section>
       <Gallery defaultCover={ResidentEvil} name="jogo teste" />
     </>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;
