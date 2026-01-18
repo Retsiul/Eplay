@@ -1,35 +1,43 @@
-import Tag from '../Tag'
-import { Card, Descricao, Infos, Titulo } from './styles'
+import Tag from "../Tag";
+import { Card, Descricao, Infos, Titulo } from "./styles";
 type Props = {
-  title: string
-  category: string
-  system: string
-  description: string
-  infos: string[]
-  image: string
-}
+  title: string;
+  category: string;
+  system: string;
+  description: string;
+  infos: string[];
+  image: string;
+  id: number;
+};
 const Product = ({
   title,
   category,
   system,
   description,
   infos,
-  image
+  image,
+  id,
 }: Props) => {
+  const getDescription = (descricao: string) => {
+    if (descricao.length > 95) {
+      return descricao.slice(0, 92) + "...";
+    }
+    return descricao;
+  };
   return (
-    <Card>
+    <Card to={`/product/${id}`}>
       <img src={image} alt={title} />
       <Infos>
-        {infos.map((i, index) => (
-          <Tag key={index}>{i}</Tag>
+        {infos.map((i) => (
+          <Tag key={i}>{i}</Tag>
         ))}
       </Infos>
       <Titulo>{title}</Titulo>
       <Tag>{category}</Tag>
       <Tag>{system}</Tag>
-      <Descricao>{description}</Descricao>
+      <Descricao>{getDescription(description)}</Descricao>
     </Card>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

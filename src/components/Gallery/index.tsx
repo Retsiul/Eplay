@@ -1,71 +1,56 @@
-import Section from '../Section'
-import spider from '../../assets/images/banner-homem-aranha.png'
-import hogwarts from '../../assets/images/fundo_hogwarts.png'
-import fechar from '../../assets/images/fechar.png'
-import play from '../../assets/images/play.png'
-import zoom from '../../assets/images/zoom.png'
-import { Action, Item, Items, Modal, ModalContent } from './styles'
-import { useState } from 'react'
+import Section from "../Section";
+import fechar from "../../assets/images/fechar.png";
+import play from "../../assets/images/play.png";
+import zoom from "../../assets/images/zoom.png";
+import { Action, Item, Items, Modal, ModalContent } from "./styles";
+import { useState } from "react";
 
 interface GalleryItem {
-  type: 'image' | 'video'
-  url: string
+  type: "image" | "video";
+  url: string;
 }
-const mock: GalleryItem[] = [
-  {
-    type: 'image',
-    url: spider
-  },
-  {
-    type: 'image',
-    url: hogwarts
-  },
-  {
-    type: 'video',
-    url: 'https://www.youtube.com/embed/uHGShqcAHlQ'
-  }
-]
 
 type Props = {
-  defaultCover: string
-  name: string
-}
+  defaultCover: string;
+  name: string;
+  items: GalleryItem[];
+};
 
 interface ModalState extends GalleryItem {
-  isVisibel: boolean
+  isVisible: boolean;
 }
 
-const Gallery = ({ defaultCover, name }: Props) => {
+const Gallery = ({ defaultCover, name, items }: Props) => {
   const [modal, setModal] = useState<ModalState>({
-    type: 'image',
-    url: '',
-    isVisibel: false
-  })
+    type: "image",
+    url: "",
+    isVisible: false,
+  });
 
   const closeModal = () => {
     setModal({
-      type: 'image',
-      url: '',
-      isVisibel: false
-    })
-  }
+      type: "image",
+      url: "",
+      isVisible: false,
+    });
+  };
 
   const getMediaCover = (item: GalleryItem) => {
-    if (item.type === 'image') return item.url
-    return defaultCover
-  }
+    if (item.type === "image") return item.url;
+    return defaultCover;
+  };
 
   const getMediaIcon = (item: GalleryItem) => {
-    if (item.type === 'image') return zoom
-    return play
-  }
+    if (item.type === "image") return zoom;
+    return play;
+  };
 
   return (
     <>
-      {' '}
+      {" "}
       <Section title="Galeria" background="black">
         <Items>
-          {mock.map((media, index) => (
+          {items.map((media, index) => (
             <>
               <Item
                 key={media.url}
@@ -73,8 +58,8 @@ const Gallery = ({ defaultCover, name }: Props) => {
                   setModal({
                     type: media.type,
                     url: media.url,
-                    isVisibel: true
-                  })
+                    isVisible: true,
+                  });
                 }}
               >
                 <img
@@ -94,7 +79,7 @@ const Gallery = ({ defaultCover, name }: Props) => {
           ))}
         </Items>
       </Section>
-      <Modal className={modal.isVisibel ? 'visible' : ''}>
+      <Modal className={modal.isVisible ? "visible" : ""}>
         <ModalContent className="container">
           <header>
             <h4>{name}</h4>
@@ -102,11 +87,11 @@ const Gallery = ({ defaultCover, name }: Props) => {
               src={fechar}
               alt="icone de fechar"
               onClick={() => {
-                closeModal()
+                closeModal();
               }}
             />
           </header>
-          {modal.type === 'image' ? (
+          {modal.type === "image" ? (
             <img src={modal.url} alt="" />
           ) : (
             <iframe src={modal.url} />
@@ -115,13 +100,13 @@ const Gallery = ({ defaultCover, name }: Props) => {
 
         <div
           onClick={() => {
-            closeModal()
+            closeModal();
           }}
           className="overlay"
         ></div>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;

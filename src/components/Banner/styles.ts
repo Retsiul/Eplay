@@ -10,17 +10,31 @@ export const Imagem = styled.div`
   background-size: cover;
   font-weight: bold;
   padding-bottom: 50px;
+position:relative;
+
+
   .container {
     padding-top: 340px;
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    z-index:1;
   }
 
   ${TagContainer} {
     position: absolute;
     top: 0;
+  }
+
+  &::after{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  content:''
   }
 `
 export const Titulo = styled.h2`

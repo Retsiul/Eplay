@@ -1,6 +1,7 @@
-import Game from "../../models/Game";
+import type { Game } from "../../pages/Home";
 import Product from "../Product";
 import { Container, List } from "./styles";
+import formatPrice from "./fomartPrice";
 export type Props = {
   title: string;
   background: "gray" | "black";
@@ -8,21 +9,38 @@ export type Props = {
 };
 
 const ProductsList = ({ title, background, games }: Props) => {
+  const getGameTags = (game: Game) => {
+    const tags = [];
+    if (game.release_date) {
+      tags.push(game.release_date);
+    }
+    if (game.prices.discount) {
+      tags.push(`${game.prices.discount}%`);
+    }
+
+    if (game.prices.current) {
+      tags.push(formatPrice(game.prices.current));
+    }
+    return tags;
+  };
+
   return (
     <Container background={background}>
       <div className="container">
         <h2>{title}</h2>
         <List>
           {games.map((g) => (
-            <Product
-              key={g.id}
-              category={g.category}
-              description={g.description}
-              image={g.image}
-              infos={g.infos}
-              system={g.system}
-              title={g.title}
-            />
+            <li key={g.id}>
+              <Product
+                id={g.id}
+                category={g.details.category}
+                description={g.description}
+                image={g.media.thumbnail}
+                infos={getGameTags(g)}
+                system={g.details.system}
+                title={g.name}
+              />
+            </li>
           ))}
         </List>
       </div>
