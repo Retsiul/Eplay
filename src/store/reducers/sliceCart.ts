@@ -20,7 +20,7 @@ reducers:{
         if(!game){
         state.items.push(action.payload)
     }else{
-        alert ('Este prato já está no carrinho!')    }
+        alert ('Este jogo já está no carrinho!')    }
     },
     remove:(state,action:PayloadAction<number>)=>{
     state.items = state.items.filter(item => item.id !== action.payload)
