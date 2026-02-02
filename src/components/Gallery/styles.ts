@@ -1,8 +1,11 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import {  cores } from '../../styles'
 
 export const Items = styled.ul`
   display: flex;
+   flex-wrap:wrap;
+   gap:16px;
+
 `
 
 export const Action = styled.div`
@@ -27,7 +30,6 @@ export const Item = styled.li`
   overflow: hidden;
   display: flex;
   position: relative;
-  margin-right: 16px;
 
   > img {
     display: block;

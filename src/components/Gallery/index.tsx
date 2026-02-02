@@ -71,8 +71,6 @@ const Gallery = ({ defaultCover, name, items }: Props) => {
                     src={getMediaIcon(media)}
                     alt="clique para maximizar a midia"
                   />
-
-                  {/* <img src={play} alt="icone do play" /> */}
                 </Action>
               </Item>
             </>

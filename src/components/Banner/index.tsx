@@ -1,18 +1,13 @@
 import { Imagem, Preco, Titulo } from "./styles";
 import Tag from "../Tag";
 import Button from "../Button";
-import { useEffect, useState } from "react";
-import type { Game } from "../../pages/Home";
 import formatPrice from "../ProductsList/fomartPrice";
 
-const Banner = () => {
-  const [banner, setBanner] = useState<Game>();
+import { useGetFeaturedGameQuery } from "../../services/api";
 
-  useEffect(() => {
-    fetch("https://api-ebac.vercel.app/api/eplay/destaque")
-      .then((resp) => resp.json())
-      .then((resp) => setBanner(resp));
-  }, []);
+const Banner = () => {
+  const { data: banner, isLoading } = useGetFeaturedGameQuery();
+
   if (!banner) {
     return `...Carregando`;
   }

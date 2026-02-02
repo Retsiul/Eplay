@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../../src/styles'
+import { breakPoints, cores } from '../../../src/styles'
 import type { Props } from '.' 
 import { Card } from '../Product/styles'
 
@@ -23,4 +23,14 @@ export const List = styled.ul`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 24px;
   margin-top: 40px;
-`
+
+ @media(max-width:${breakPoints.desktop}){
+grid-template-columns:1fr 1fr;
+    }
+
+    
+ @media(max-width:${breakPoints.tablet}){
+grid-template-columns:1fr ;
+    }
+
+  `
