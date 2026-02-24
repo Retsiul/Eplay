@@ -1,15 +1,20 @@
 import type { Game } from "../../pages/Home";
+import Loader from "../Loader";
 import Product from "../Product";
-import { Container, List } from "./styles";
-import formatPrice from "./fomartPrice";
+
+import { formatPrice } from "./fomartPrice";
+
+import * as S from "./styles";
+
 export type Props = {
   title: string;
-  background: "gray" | "black";
-  games: Game[];
+  $background: "gray" | "black";
+  games?: Game[];
   id?: string;
+  isLoading: boolean;
 };
 
-const ProductsList = ({ title, background, games, id }: Props) => {
+const ProductsList = ({ title, $background, games, id, isLoading }: Props) => {
   const getGameTags = (game: Game) => {
     const tags = [];
     if (game.release_date) {
@@ -25,27 +30,31 @@ const ProductsList = ({ title, background, games, id }: Props) => {
     return tags;
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
-    <Container background={background} id={id}>
+    <S.Container $background={$background} id={id}>
       <div className="container">
         <h2>{title}</h2>
-        <List>
-          {games.map((g) => (
-            <li key={g.id}>
-              <Product
-                id={g.id}
-                category={g.details.category}
-                description={g.description}
-                image={g.media.thumbnail}
-                infos={getGameTags(g)}
-                system={g.details.system}
-                title={g.name}
-              />
-            </li>
-          ))}
-        </List>
+        <S.List>
+          {games &&
+            games.map((g) => (
+              <li key={g.id}>
+                <Product
+                  id={g.id}
+                  category={g.details.category}
+                  description={g.description}
+                  image={g.media.thumbnail}
+                  infos={getGameTags(g)}
+                  system={g.details.system}
+                  title={g.name}
+                />
+              </li>
+            ))}
+        </S.List>
       </div>
-    </Container>
+    </S.Container>
   );
 };
 

@@ -1,20 +1,19 @@
-import Button from "../Button";
-import {
-  CartContainer,
-  CartItem,
-  Overlay,
-  Prices,
-  Quantity,
-  Sidebar,
-} from "./styles";
-import Tag from "../Tag";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { formatPrice, getTotalPrice } from "../ProductsList/fomartPrice";
 import type { RootReducer } from "../../store";
 import { close, remove } from "../../store/reducers/sliceCart";
-import formatPrice from "../ProductsList/fomartPrice";
+
+import Button from "../Button";
+import Tag from "../Tag";
+
+import * as S from "./styles";
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart);
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -22,23 +21,22 @@ const Cart = () => {
     dispatch(close());
   };
 
-  const getTotalPrice = () => {
-    return items.reduce((acumulador, valorAtual) => {
-      return (acumulador += valorAtual.prices.current!);
-    }, 0);
-  };
-
   const removeItem = (id: number) => {
     dispatch(remove(id));
   };
 
+  const goToCheckout = () => {
+    navigate("/checkout");
+    closeCart();
+  };
+
   return (
-    <CartContainer className={isOpen ? "is-open" : ""}>
-      <Overlay onClick={closeCart} />
-      <Sidebar>
+    <S.CartContainer className={isOpen ? "is-open" : ""}>
+      <S.Overlay onClick={closeCart} />
+      <S.Sidebar>
         <ul>
           {items.map((item) => (
-            <CartItem key={item.id}>
+            <S.CartItem key={item.id}>
               <img src={item.media.thumbnail} alt={item.name} />
               <div>
                 <h3>{item.name}</h3>
@@ -52,18 +50,22 @@ const Cart = () => {
                 }}
                 type="button"
               ></button>
-            </CartItem>
+            </S.CartItem>
           ))}
         </ul>
-        <Quantity>{items.length}</Quantity>
-        <Prices>
-          {formatPrice(getTotalPrice())} <span>Em até 6X sem juros</span>
-        </Prices>
-        <Button title="Clique aqui para continuar com a compra" type="button">
+        <S.Quantity>{items.length}</S.Quantity>
+        <S.Prices>
+          {formatPrice(getTotalPrice(items))} <span>Em até 6X sem juros</span>
+        </S.Prices>
+        <Button
+          title="Clique aqui para continuar com a compra"
+          type="button"
+          onClick={goToCheckout}
+        >
           Continuar com a compra
         </Button>
-      </Sidebar>
-    </CartContainer>
+      </S.Sidebar>
+    </S.CartContainer>
   );
 };
 

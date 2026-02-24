@@ -1,8 +1,17 @@
-const formatPrice = (preco = 0) => {
+import type { Game } from "../../pages/Home";
+
+export const formatPrice = (price = 0) => {
   return new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format(preco);
+  }).format(price);
 };
 
-export default formatPrice;
+export const getTotalPrice = (items: Game[]) => {
+  return items.reduce((accumulator, currentItem) => {
+    if (currentItem.prices.current) {
+      return (accumulator += currentItem.prices.current);
+    }
+    return 0;
+  }, 0);
+};

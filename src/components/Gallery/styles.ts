@@ -1,12 +1,11 @@
-import styled from 'styled-components'
-import {  cores } from '../../styles'
+import styled from "styled-components";
+import { colors } from "../../styles";
 
 export const Items = styled.ul`
   display: flex;
-   flex-wrap:wrap;
-   gap:16px;
-
-`
+  flex-wrap: wrap;
+  gap: 16px;
+`;
 
 export const Action = styled.div`
   position: absolute;
@@ -20,16 +19,17 @@ export const Action = styled.div`
   justify-content: center;
   opacity: 0;
   transition: opacity 0.5s ease;
-`
+`;
 
 export const Item = styled.li`
   border-radius: 8px;
-  border: 2px solid ${cores.branca};
+  border: 2px solid ${colors.white};
   width: 150px;
   aspect-ratio: 1/1;
   overflow: hidden;
   display: flex;
   position: relative;
+  cursor: zoom-in;
 
   > img {
     display: block;
@@ -37,12 +37,13 @@ export const Item = styled.li`
     object-fit: cover;
   }
 
-  &:hover{
-  ${Action}{
-  opacity:1;
-  transition:opacity .5s ease;}
-
-  `
+  &:hover {
+    ${Action} {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+  }
+`;
 
 export const Modal = styled.div`
   position: fixed;
@@ -68,7 +69,7 @@ export const Modal = styled.div`
     height: 100%;
     background: rgba(0, 0, 0, 0.73);
   }
-`
+`;
 
 export const ModalContent = styled.div`
   max-width: 960px;
@@ -85,6 +86,8 @@ export const ModalContent = styled.div`
     }
     img {
       cursor: pointer;
+      height: 16px;
+      width: 16px;
     }
   }
 
@@ -99,4 +102,4 @@ export const ModalContent = styled.div`
     width: 100%;
     aspect-ratio: 16/9;
   }
-`
+`;

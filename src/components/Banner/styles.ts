@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { TagContainer } from '../Tag/style'
+import styled from "styled-components";
+import { TagContainer } from "../Tag/style";
 
-export const Imagem = styled.div`
+export const Image = styled.div`
   width: 100%;
   height: 560px;
   display: flex;
@@ -10,8 +10,7 @@ export const Imagem = styled.div`
   background-size: cover;
   font-weight: bold;
   padding-bottom: 50px;
-position:relative;
-
+  position: relative;
 
   .container {
     padding-top: 340px;
@@ -19,7 +18,7 @@ position:relative;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    z-index:1;
+    z-index: 1;
   }
 
   ${TagContainer} {
@@ -27,24 +26,24 @@ position:relative;
     top: 0;
   }
 
-  &::after{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  content:''
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    content: "";
   }
-`
-export const Titulo = styled.h2`
+`;
+export const Title = styled.h2`
   font-size: 36px;
   max-width: 450px;
-`
-export const Preco = styled.p`
+`;
+export const Prices = styled.p`
   margin-top: 24px;
   font-size: 24px;
   span {
     text-decoration: line-through;
   }
-`
+`;

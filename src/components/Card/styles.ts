@@ -1,25 +1,26 @@
 import styled from "styled-components";
-import { cores } from "../../styles";
+import { colors } from "../../styles";
 
-export const Container= styled.div`
-border-radius:8px;
-background:${cores.cinza};
-padding:24px;
-margin-bottom:40px;
+export const Container = styled.div`
+  border-radius: 8px;
+  background: ${colors.gray};
+  padding: 24px;
+  margin-bottom: 40px;
 
- h2,h3{
- font-weight:bold;
- font-size:18px;
- color:${cores.branca};
- margin-bottom:24px;
+  h2,
+  h3 {
+    font-weight: bold;
+    font-size: 18px;
+    color: ${colors.white};
+    margin-bottom: 24px;
+  }
 
- }
+  .margin-top {
+    margin-top: 24px;
+  }
 
- .margin-top{
- margin-top:24px;
- }
-
- p{
- font-size:14px;;
- line-height:22px;}
-`
+  p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+`;

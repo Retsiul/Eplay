@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 import Section from "../Section";
-import fechar from "../../assets/images/fechar.png";
+
+import closeIcon from "../../assets/images/fechar.png";
 import play from "../../assets/images/play.png";
 import zoom from "../../assets/images/zoom.png";
-import { Action, Item, Items, Modal, ModalContent } from "./styles";
-import { useState } from "react";
+
+import * as S from "./styles";
 
 interface GalleryItem {
   type: "image" | "video";
@@ -48,11 +51,11 @@ const Gallery = ({ defaultCover, name, items }: Props) => {
   return (
     <>
       {" "}
-      <Section title="Galeria" background="black">
-        <Items>
+      <Section title="Galeria" $background="black">
+        <S.Items>
           {items.map((media, index) => (
             <>
-              <Item
+              <S.Item
                 key={media.url}
                 onClick={() => {
                   setModal({
@@ -66,35 +69,29 @@ const Gallery = ({ defaultCover, name, items }: Props) => {
                   src={getMediaCover(media)}
                   alt={`media ${index + 1} do Jogo ${name}`}
                 />
-                <Action>
+                <S.Action>
                   <img
                     src={getMediaIcon(media)}
                     alt="clique para maximizar a midia"
                   />
-                </Action>
-              </Item>
+                </S.Action>
+              </S.Item>
             </>
           ))}
-        </Items>
+        </S.Items>
       </Section>
-      <Modal className={modal.isVisible ? "visible" : ""}>
-        <ModalContent className="container">
+      <S.Modal className={modal.isVisible ? "visible" : ""}>
+        <S.ModalContent className="container">
           <header>
             <h4>{name}</h4>
-            <img
-              src={fechar}
-              alt="icone de fechar"
-              onClick={() => {
-                closeModal();
-              }}
-            />
+            <img src={closeIcon} alt="icone de fechar" onClick={closeModal} />
           </header>
           {modal.type === "image" ? (
             <img src={modal.url} alt="" />
           ) : (
             <iframe src={modal.url} />
           )}
-        </ModalContent>
+        </S.ModalContent>
 
         <div
           onClick={() => {
@@ -102,7 +99,7 @@ const Gallery = ({ defaultCover, name, items }: Props) => {
           }}
           className="overlay"
         ></div>
-      </Modal>
+      </S.Modal>
     </>
   );
 };
